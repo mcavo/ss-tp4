@@ -5,7 +5,7 @@ import utils.RandomUtils;
 public class Particle {
 
 	private int id;
-	private Point position;
+	protected Point position;
 	private Point velocity;
 	private double radius;
 	private double mass;

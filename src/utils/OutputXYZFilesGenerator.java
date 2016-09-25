@@ -25,7 +25,7 @@ public class OutputXYZFilesGenerator {
 		}
 	}
 
-	public void printState(List<Particle> particles) {
+	public void printState(List<? extends Particle> particles) {
 		List<String> lines = new LinkedList<String>();
 		lines.add(String.valueOf(particles.size()));
 		lines.add("ParticleId xCoordinate yCoordinate xDisplacement yDisplacement Radius R G B Transparency Selection");

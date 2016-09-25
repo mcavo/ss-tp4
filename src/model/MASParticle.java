@@ -25,23 +25,15 @@ public class MASParticle extends Particle {
 	}
 	
 	public Point getPosition(double t) {
+		if (t < 0) {
+			return new Point(0, 0);
+		}
 		return new Point(Math.exp(-b*t)*Math.cos(w*t), 0);
 	}
 	
-	public Point getVelocity(double t) {
-		return new Point(-b*getPosition(t).x - w*Math.exp(-b*t)*Math.sin(w*t), 0);
-	}
-	
-	public double getFX(double t) {
-		if (t < 0) {
-			return 0;
-		}
-		return -k*getPosition(t - 1).x - gamma*getPosition(t).x;
-	}
-	
-	public double getFY(double t) {
-		return 0;
-	}
+//	public Point getVelocity(double t) {
+//		return new Point(-b*getPosition(t).x - w*Math.exp(-b*t)*Math.sin(w*t), 0);
+//	}
 	
 	//TODO: instead of Particle should be an Interface general for all particles needed in the System
 	public Point getForce(double t, Particle p) {

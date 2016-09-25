@@ -31,25 +31,23 @@ public class VerletRunner {
 	private final boolean printOutput;
 	private final int N;
 	private final int seed;
-	private final double maxTime = 40.0;
+	private final double maxTime = 5.0;
 	
 	private double time;
 
 	public void run() {
 		OutputXYZFilesGenerator outputXYZFilesGenerator = new OutputXYZFilesGenerator("animation/", "state");
 		List<MASParticle> particles = new ArrayList<MASParticle>();
-		Verlet v = new Verlet(particles);
 		particles.add(new MASParticle(1, 1E4, 100, 70));
+		Verlet v = new Verlet(particles);
 		time = 0;
 		double dt = 1E-3;
-		if (printOutput) {
-			outputXYZFilesGenerator.printState(particles);	
-		}
 		while (time < maxTime) {
-			v.run(time);
 			outputXYZFilesGenerator.printState(particles);
+			v.run(time);
 			time+=dt;
 		}
+		outputXYZFilesGenerator.printState(particles);
 	}
 
 //	public List<Particle> createParticles(int N, boolean centerBigParticle) {

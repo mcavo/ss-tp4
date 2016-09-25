@@ -14,20 +14,29 @@ public class Verlet {
 	
 	public void run(double dt) {
 		List<Point> forces = new ArrayList<>(Collections.nCopies(particles.size(), new Point(0, 0)));
-		for (int i = 0; i < particles.size() - 1; i++) {
+		for (int i = 0; i < particles.size(); i++) {
 			MASParticle p = particles.get(i);
-			for (int j = i + 1; j < particles.size() - 2; j++) {
-				Point force = particles.get(i).getForce(dt, p);
+			forces.add(p.getForce(p)); // In case particle has its own forces
+			for (int j = i + 1; j < particles.size(); j++) {
+				Point force = particles.get(i).getForce(p);
 				forces.add(i, Point.sum(forces.get(i), force));
 				forces.add(j, Point.sum(forces.get(i), force));
 			}
+			Point oldPosition = p.getOldPosition();
 			updatePosition(p, forces.get(i), dt);
+			updateVelocity(p, oldPosition, dt);
 		}
 	}
 
 	private void updatePosition(MASParticle p, Point force, double dt) {
 		double rx = 2*p.getX() - 2*p.getOldPosition().x + force.x*Math.pow(dt, 2)/p.getMass();
-		double ry = 2*p.getX() - 2*p.getOldPosition().y + force.y*Math.pow(dt, 2)/p.getMass();
+		double ry = 2*p.getY() - 2*p.getOldPosition().y + force.y*Math.pow(dt, 2)/p.getMass();
 		p.updatePosition(rx, ry);
+	}
+	
+	private void updateVelocity(MASParticle p, Point oldPosition, double dt) {
+		double vx = (p.getX() - oldPosition.x)/(2*dt);
+		double vy = (p.getY() - oldPosition.y)/(2*dt);
+		p.updateVelocity(vx, vy);
 	}
 }

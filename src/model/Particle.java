@@ -47,12 +47,20 @@ public class Particle {
 		return velocity.y;
 	}
 	
+	public Point getVelocity(){
+		return velocity;
+	}
+	
 	public double getMass(){
 		return mass;
 	}
 
 	public double getRadius() {
 		return radius;
+	}
+	
+	public void updateVelocity(double x, double y) {
+		this.velocity = new Point(x, y);
 	}
 	
 	public void move(double time){

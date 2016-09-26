@@ -15,6 +15,7 @@ public class MASParticle extends Particle {
 	     
 	public Point getForce(Particle p) {
 		// The position as well as the velocity are from t - dt
+		System.out.println("elastico: " + -k*oldPosition.x + "roce: " + gamma*getXVelocity());
 		return new Point(-k*oldPosition.x - gamma*getXVelocity(), 0);
 	}
 	

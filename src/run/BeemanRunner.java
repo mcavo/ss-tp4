@@ -3,20 +3,15 @@ package run;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Beeman;
 import model.MASParticle;
-import model.Verlet;
 import utils.OutputFileGenerator;
 import utils.OutputXYZFilesGenerator;
 import utils.RandomUtils;
 
-public class VerletRunner {
+public class BeemanRunner {
 	
-	public static void main(String[] args) {
-// 		new VerletRunner(60, 23456, true, 300);
- 		new BeemanRunner(60, 23456, true, 300);
-	}
-	
-	public VerletRunner(int fps, int seed, boolean print, int N) {
+	public BeemanRunner(int fps, int seed, boolean print, int N) {
 		super();
 		deltaTime = 1.0 / fps;
 		printOutput = print; 
@@ -38,10 +33,10 @@ public class VerletRunner {
 
 	public void run() {
 		OutputXYZFilesGenerator outputXYZFilesGenerator = new OutputXYZFilesGenerator("animation/", "state");
-		OutputFileGenerator outputFileGenerator = new OutputFileGenerator("animation/", "verlet");
+		OutputFileGenerator outputFileGenerator = new OutputFileGenerator("animation/", "beeman");
 		List<MASParticle> particles = new ArrayList<MASParticle>();
 		particles.add(new MASParticle(1, 1E4, 100, 70));
-		Verlet v = new Verlet(particles);
+		Beeman v = new Beeman(particles);
 		time = 0;
 		double dt = 1E-3;
 		while (time < maxTime) {

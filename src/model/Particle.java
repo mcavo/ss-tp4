@@ -5,7 +5,7 @@ import utils.RandomUtils;
 public class Particle {
 
 	private int id;
-	private Point position;
+	protected Point position;
 	private Point velocity;
 	private double radius;
 	private double mass;
@@ -47,12 +47,20 @@ public class Particle {
 		return velocity.y;
 	}
 	
+	public Point getVelocity(){
+		return velocity;
+	}
+	
 	public double getMass(){
 		return mass;
 	}
 
 	public double getRadius() {
 		return radius;
+	}
+	
+	public void updateVelocity(double x, double y) {
+		this.velocity = new Point(x, y);
 	}
 	
 	public void move(double time){

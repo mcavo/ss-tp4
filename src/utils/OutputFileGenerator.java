@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
+import model.Particle;
+
 public class OutputFileGenerator {
 	
 	private String path;
@@ -32,6 +34,12 @@ public class OutputFileGenerator {
 			Files.write(file, lines);
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void printParticlesPosition(List< ? extends Particle> particles) {
+		for (Particle p : particles) {
+			addLine(p.getX() + " " + p.getY());
 		}
 	}
 

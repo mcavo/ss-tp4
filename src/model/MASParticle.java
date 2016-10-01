@@ -8,7 +8,7 @@ public class MASParticle extends VerletParticle {
 	protected double gamma;
 
 	public MASParticle(int id, double k, double gamma, double m) {
-		super(id, 1, 0, -gamma / (2*m), 0, m, 1E-3); // TODO: should be revise
+		super(id, 1, 0, -gamma / (2*m), 0, m, 0.1); // TODO: should be revise
 		this.gamma = gamma;
 		this.k = k;
 	}

@@ -13,7 +13,6 @@ public class OutputXYZFilesGenerator {
 
 	private int frameNumber;
 	private String path;
-	private double maxSpeed = 5.6;
 
 	public OutputXYZFilesGenerator(String directory, String file) {
 		frameNumber = 0;

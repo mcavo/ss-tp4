@@ -47,6 +47,10 @@ public class Particle {
 		return position.y;
 	}
 	
+	public Point getPosition() {
+		return position;
+	}
+	
 	public double getXVelocity(){
 		return velocity.x;
 	}

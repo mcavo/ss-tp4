@@ -5,7 +5,7 @@ public class Planet extends VerletParticle{
 	private static final double G = 6.693e-11;
 	
 	public Planet(int id, double x, double y, double z, double vx, double vy, double vz, double m, double r){
-		super(id, x, y, z, vx, vy, vz, m, r);
+		super(id, x, y, 0, vx, vy, 0, m, r);
 	}
 
 	@Override

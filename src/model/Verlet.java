@@ -8,18 +8,38 @@ public class Verlet {
 
 	private List<? extends VerletParticle> particles;
 	
-	public Verlet(List<? extends VerletParticle> particles) {
+	public Verlet(List<? extends VerletParticle> particles, double dt) {
 		this.particles = particles;
+		estimateOldPosition(dt);
 	}
 	
+	private void estimateOldPosition(double dt) {
+		Map<Integer, Point> forces = new HashMap<Integer, Point>();
+		for (int i = 0; i < particles.size(); i++) {
+			VerletParticle p = particles.get(i);
+			forces.put(i, Point.sum(forces.getOrDefault(i, new Point(0,0)), p.getOwnForce()));
+			for (int j = i + 1; j < particles.size(); j++) {
+				Point force = p.getForce(particles.get(j));
+				Point invForce = force.clone();
+				invForce.applyFunction(x->(-1)*x);
+				forces.put(i, Point.sum(forces.getOrDefault(i, new Point(0,0)), force));
+				forces.put(j, Point.sum(forces.getOrDefault(j, new Point(0,0)), invForce));
+			}
+			p.updateOldPosition(forces.get(i), dt);
+		}
+	}
+
 	public void run(double dt) {
 		Map<Integer, Point> forces = new HashMap<Integer, Point>();
 		for (int i = 0; i < particles.size(); i++) {
 			VerletParticle p = particles.get(i);
+			forces.put(i, Point.sum(forces.getOrDefault(i, new Point(0,0)), p.getOwnForce()));
 			for (int j = i + 1; j < particles.size(); j++) {
-				VerletParticle pj = particles.get(j);
-				forces.put(i, Point.sum(forces.getOrDefault(i, new Point(0,0)), p.getForce(pj)));
-				forces.put(j, Point.sum(forces.getOrDefault(j, new Point(0,0)), pj.getForce(p)));
+				Point force = p.getForce(particles.get(j));
+				Point invForce = force.clone();
+				invForce.applyFunction(x->(-1)*x);
+				forces.put(i, Point.sum(forces.getOrDefault(i, new Point(0,0)), force));
+				forces.put(j, Point.sum(forces.getOrDefault(j, new Point(0,0)), invForce));
 			}
 			Point oldPosition = p.getOldPosition();
 			updatePosition(p, forces.get(i), dt);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Beeman;
+import model.BeemanParticle;
 import model.MASParticle;
 import utils.OutputFileGenerator;
 import utils.OutputXYZFilesGenerator;
@@ -25,8 +26,8 @@ public class BeemanRunner {
 	public void run() {
 		OutputXYZFilesGenerator outputXYZFilesGenerator = new OutputXYZFilesGenerator("animation/", "state");
 		OutputFileGenerator outputFileGenerator = new OutputFileGenerator("animation/", "beeman");
-		List<MASParticle> particles = new ArrayList<MASParticle>();
-		particles.add(new MASParticle(1, 1E4, 100, 70));
+		List<BeemanParticle> particles = new ArrayList<BeemanParticle>();
+		particles.add(new BeemanParticle(1, 1E4, 100, 70));
 		Beeman v = new Beeman(particles);
 		time = 0;
 		double dt = 1E-3;

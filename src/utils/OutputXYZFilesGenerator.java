@@ -43,7 +43,7 @@ public class OutputXYZFilesGenerator {
 	//TODO: add z
 	private String getInfo(Particle p, String color, double transparency, int selection) {
 		return p.getId() + " " + String.format("%f", p.getX()) + " " + String.format("%f", p.getY()) + " " + String.format("%f", p.getXVelocity()) + " " + String.format("%f", p.getYVelocity()) + " "
-				+ String.format("%f", (p.getId()==1?10:100)*p.getRadius()) + " " + color + " " + transparency + " " + selection;
+				+ String.format("%f", p.getRadius()) + " " + color + " " + transparency + " " + selection;
 	}
 
 	private void writeFile(List<String> lines) {

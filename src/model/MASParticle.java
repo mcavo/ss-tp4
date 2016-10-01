@@ -14,6 +14,11 @@ public class MASParticle extends VerletParticle {
 	}
 	     
 	public Point getForce(Particle p) {
+		return new Point(0,0);
+	}
+
+	@Override
+	public Point getOwnForce() {
 		// The position as well as the velocity are from t - dt
 		return new Point(-k*position.x - gamma*getXVelocity(), 0);
 	}

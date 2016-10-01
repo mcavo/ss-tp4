@@ -10,15 +10,17 @@ public class Planet extends VerletParticle{
 
 	@Override
 	public Point getForce(Particle p) {
-		if(this==p){
-			return new Point(0,0);
-		}
 		double dist = Point.dist(position, p.position);
 		double mod = G*getMass()*p.getMass() / (dist*dist);
 		Point sub = Point.sub(p.position, position);
 		sub.normalize();
 		sub.applyFunction(x->x*mod);
 		return sub;
+	}
+
+	@Override
+	public Point getOwnForce() {
+		return new Point(0,0);
 	}
 	
 }

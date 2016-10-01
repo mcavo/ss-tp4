@@ -23,13 +23,14 @@ public class VerletRunner {
 	private double time;
 
 	public void run() {
+
+		double dt = 1E-3;
 		OutputXYZFilesGenerator outputXYZFilesGenerator = new OutputXYZFilesGenerator("animation/", "state");
 		OutputFileGenerator outputFileGenerator = new OutputFileGenerator("animation/", "verlet");
 		List<MASParticle> particles = new ArrayList<MASParticle>();
 		particles.add(new MASParticle(1, 1E4, 100, 70));
-		Verlet v = new Verlet(particles);
+		Verlet v = new Verlet(particles, dt);
 		time = 0;
-		double dt = 1E-3;
 		while (time < maxTime) {
 			outputXYZFilesGenerator.printState(particles);
 			outputFileGenerator.printParticlesPosition(particles);

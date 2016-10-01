@@ -11,15 +11,13 @@ import utils.RandomUtils;
 
 public class BeemanRunner {
 	
-	public BeemanRunner(boolean print) {
+	public BeemanRunner() {
 		super();
-		printOutput = print;
 		this.run();
 	}
 	
 	public static Statistics stats;
 
-	private final boolean printOutput;
 	private final double maxTime = 5.0;
 	
 	private double time;

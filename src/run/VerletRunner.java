@@ -11,23 +11,13 @@ import utils.RandomUtils;
 
 public class VerletRunner {
 	
-	
-	public VerletRunner(int fps, int seed, boolean print, int N) {
+	public VerletRunner() {
 		super();
-		deltaTime = 1.0 / fps;
-		printOutput = print; 
-		this.seed = seed;
-		RandomUtils.setSeed(seed);
-		this.N = N;
 		this.run();
 	}
 	
 	public static Statistics stats;
 
-	private final double deltaTime;
-	private final boolean printOutput;
-	private final int N;
-	private final int seed;
 	private final double maxTime = 5.0;
 	
 	private double time;

@@ -31,21 +31,19 @@ public class OutputXYZFilesGenerator {
 		lines.add("ParticleId xCoordinate yCoordinate xDisplacement yDisplacement Radius R G B Transparency Selection");
 		for (Particle p : particles) {
 			if (p.getId() == 1) {
-				lines.add(getInfo(p, "1 " + getGreen(p) + " 0", 0.5, 1));
+				lines.add(getInfo(p, "1 0 0", 0.5, 1));
 			} else {
-				lines.add(getInfo(p, "0 " + getGreen(p) + " 1", 0, 0));
+				lines.add(getInfo(p, "0 0 1", 0, 0));
 			}
 		}
 		writeFile(lines);
 	}
 
-	private String getGreen(Particle p) {
-		return Double.toString(p.getSpeed() / maxSpeed);
-	}
 
+	//TODO: add z
 	private String getInfo(Particle p, String color, double transparency, int selection) {
-		return p.getId() + " " + p.getX() + " " + p.getY() + " " + p.getXVelocity() + " " + p.getYVelocity() + " "
-				+ 2 + " " + color + " " + transparency + " " + selection;
+		return p.getId() + " " + String.format("%f", p.getX()) + " " + String.format("%f", p.getY()) + " " + String.format("%f", p.getXVelocity()) + " " + String.format("%f", p.getYVelocity()) + " "
+				+ String.format("%f", (p.getId()==1?10:100)*p.getRadius()) + " " + color + " " + transparency + " " + selection;
 	}
 
 	private void writeFile(List<String> lines) {

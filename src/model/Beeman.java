@@ -16,11 +16,9 @@ public class Beeman {
 		List<Point> forces = new ArrayList<>(Collections.nCopies(particles.size(), new Point(0, 0)));
 		for (int i = 0; i < particles.size(); i++) {
 			MASParticle p = particles.get(i);
-			forces.set(i, Point.sum(forces.get(i), p.getForce(p))); // In case
-																	// particle
-																	// has its
-																	// own
-																	// forces
+			 
+			// In case particle has its own forces
+			forces.set(i, Point.sum(forces.get(i), p.getForce(p)));
 
 			Point currentA = calculateAcceleration(p.getForce(p), p.getMass());
 			Point passedA = calculateAcceleration(p.getCurrentForces(), p.getMass());

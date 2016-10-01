@@ -19,7 +19,7 @@ public class VerletPlanetRunner {
 
 	public static Statistics stats;
 
-	private final double maxTime = 3600.0*24*900;
+	private final double maxTime = 3600.0*24*3000;
 
 	private double time;
 
@@ -38,19 +38,25 @@ public class VerletPlanetRunner {
 		int i = 0;
 		boolean spaceshipCreated = false;
 		double min = Double.MAX_VALUE;
+		double minz = Double.MAX_VALUE;
 		while (time < maxTime) {
-			if(time >= 50276700 && !spaceshipCreated){
+			if(time >= 0 && !spaceshipCreated){
 				System.out.println("time releasing spaceship: "+String.format("%.0f",time));
-				v.addSpaceShip();
+				//v.addSpaceShipTangencial();
+				v.addCustumSpaceShip();
 				spaceshipCreated=true;
 			}
 			if(i++%dtToPrint==0){
 				outputXYZFilesGenerator.printState(particles);
 			}
 			if(particles.size()>3){
-				min = Math.min(min, Point.dist(particles.get(2).getPosition(), particles.get(3).getPosition())-particles.get(2).getRadius());
+				if(min>Point.dist(particles.get(2).getPosition(), particles.get(3).getPosition())-particles.get(2).getRadius()){
+					min=Point.dist(particles.get(2).getPosition(), particles.get(3).getPosition())-particles.get(2).getRadius();
+					minz=Math.abs(particles.get(2).getPosition().z - particles.get(3).getPosition().z)-particles.get(2).getRadius();
+				}
 				if(Point.dist(particles.get(2).getPosition(), particles.get(3).getPosition())-particles.get(2).getRadius()<0){
 					System.out.println("time colliding Mars: "+String.format("%.0f",time));
+					System.out.println("spaceship speed: "+String.format("%.2f", particles.get(3).getVelocity().abs()));
 					particles.remove(3);
 				}
 			}
@@ -59,5 +65,6 @@ public class VerletPlanetRunner {
 		}
 		outputXYZFilesGenerator.printState(particles);
 		System.out.println("min "+min);
+		//System.out.println("minz "+minz);
 	}
 }

@@ -66,8 +66,7 @@ public class Verlet {
 		p.updateVelocity(vx, vy, vz);
 	}
 
-	public void addSpaceShip() {
-		
+	public void addSpaceShipTangencial() {
 		Particle sun = particles.get(0);
 		Particle earth = particles.get(1);
 		Point linealDireccion = Point.sub(earth.position, sun.position);
@@ -76,8 +75,29 @@ public class Verlet {
 		Point position = Point.sum(earth.position, linealDireccion);
 		linealDireccion = earth.velocity.clone();
 		linealDireccion.normalize();
-		linealDireccion.applyFunction(x->(15120)*x);
+		linealDireccion.applyFunction(x->(10120)*x);
 		Point velocity = Point.sum(earth.velocity, linealDireccion);
+		VerletParticle spaceship = new Planet(4, position.x, position.y, position.z, velocity.x, velocity.y, velocity.z, 2E5, 0);
+		Point force = new Point(0,0);
+		for (int i = 0; i < particles.size(); i++) {
+			force=Point.sum(force, spaceship.getForce(particles.get(i)));
+		}
+		spaceship.updateOldPosition(force, dt);
+		particles.add(spaceship);
+	}
+
+	public void addCustumSpaceShip() {
+		Particle sun = particles.get(0);
+		Particle earth = particles.get(1);
+		Point linealDireccion = Point.sub(earth.position, sun.position);
+		linealDireccion.normalize();
+		linealDireccion.applyFunction(x->(1500000+earth.getRadius())*x);
+		Point position = Point.sum(earth.position, linealDireccion);
+		linealDireccion = earth.velocity.clone();
+		linealDireccion.normalize();
+		linealDireccion.applyFunction(x->(7120)*x);
+		Point velocity = Point.sum(earth.velocity, linealDireccion);
+		velocity = Point.sum(velocity, new Point(10000,-40054));
 		VerletParticle spaceship = new Planet(4, position.x, position.y, position.z, velocity.x, velocity.y, velocity.z, 2E5, 0);
 		Point force = new Point(0,0);
 		for (int i = 0; i < particles.size(); i++) {

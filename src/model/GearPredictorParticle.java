@@ -25,7 +25,7 @@ public class GearPredictorParticle extends Particle {
 		rc.put(0, position.x);
 		rc.put(1, velocity.x);
 		for(int i=2; i<6; i++){
-			rc.put(i, getR(rc.get(i-2), rc.get(i-1)));
+			rc.put(i, getR(rc.get(i-2), rc.get(i-1))/getMass());
 		}
 	}
 	

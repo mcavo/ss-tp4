@@ -30,16 +30,16 @@ public class Beeman {
 	}
 
 	private void updatePosition(MASParticle p, double dt, Point currentA, Point passedA) {
-		double rx = p.getX() + p.getXVelocity() * dt + (2.0 / 3) * currentA.x * Math.pow(dt, 2)
-				- (1.0 / 6) * passedA.x * Math.pow(dt, 2);
-		double ry = p.getY() + p.getYVelocity() * dt + 2 / 3 * currentA.y * Math.pow(dt, 2)
-				- 1 / 6 * passedA.y * Math.pow(dt, 2);
+		double rx = p.getX() + p.getXVelocity() * dt + (2.0 / 3.0) * currentA.x * Math.pow(dt, 2)
+				- (1.0 / 6.0) * passedA.x * Math.pow(dt, 2);
+		double ry = p.getY() + p.getYVelocity() * dt + 2.0 / 3.0 * currentA.y * Math.pow(dt, 2)
+				- 1.0 / 6.0 * passedA.y * Math.pow(dt, 2);
 		p.updatePosition(rx, ry);
 	}
 
 	private void updateVelocity(MASParticle p, Point currentA, Point passedA, Point futureA, double dt) {
-		double vx = p.getXVelocity() + (1.0 / 3) * futureA.x * dt + (5.0 / 6) * currentA.x * dt - (1.0 / 6) * passedA.x * dt;
-		double vy = p.getYVelocity() + 1 / 3 * futureA.y * dt + 5 / 6 * currentA.y * dt - 1 / 6 * passedA.y * dt;
+		double vx = p.getXVelocity() + (1.0 / 3.0) * futureA.x * dt + (5.0 / 6.0) * currentA.x * dt - (1.0 / 6.0) * passedA.x * dt;
+		double vy = p.getYVelocity() + 1.0 / 3.0 * futureA.y * dt + 5.0 / 6.0 * currentA.y * dt - 1.0 / 6.0 * passedA.y * dt;
 		p.updateVelocity(vx, vy);
 	}
 

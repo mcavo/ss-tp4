@@ -6,7 +6,7 @@ public class Particle {
 
 	private int id;
 	protected Point position;
-	private Point velocity;
+	protected Point velocity;
 	private double radius;
 	private double mass;
 

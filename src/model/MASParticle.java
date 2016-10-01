@@ -1,9 +1,11 @@
 package model;
 
+import java.util.Map;
+
 //TODO: Update name. It's wrong
 public class MASParticle extends Particle {
-	private double k;
-	private double gamma;
+	protected double k;
+	protected double gamma;
 	private Point oldPosition;
 	private Point currentForces;
 

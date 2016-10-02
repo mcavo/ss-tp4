@@ -30,7 +30,7 @@ public class GearPredictorParticle extends Particle {
 	}
 	
 	private Double getR(Double r0, Double r1){
-		return -k*r0-gamma*r1;
+		return (-k*r0-gamma*r1)/getMass();
 	}
 
 	private Double r(int i){

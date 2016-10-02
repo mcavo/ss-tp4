@@ -98,7 +98,7 @@ public class Verlet {
 		linealDireccion.applyFunction(x->(7120)*x);
 		Point velocity = Point.sum(earth.velocity, linealDireccion);
 		velocity = Point.sum(velocity, new Point(10000,-40054));
-		VerletParticle spaceship = new Planet(4, position.x, position.y, position.z, velocity.x, velocity.y, velocity.z, 2E5, 0);
+		VerletParticle spaceship = new Planet(10, position.x, position.y, position.z, velocity.x, velocity.y, velocity.z, 2E5, 0);
 		Point force = new Point(0,0);
 		for (int i = 0; i < particles.size(); i++) {
 			force=Point.sum(force, spaceship.getForce(particles.get(i)));

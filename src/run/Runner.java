@@ -8,6 +8,6 @@ public class Runner {
  		//new BeemanRunner(true);
  		//new GearPredictorRunner();
 		//new VerletPlanetRunner();
-		new VerletBlackHoleRunner();
+		new VerletPlanetRunner();
 	}
 }

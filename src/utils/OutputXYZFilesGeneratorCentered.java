@@ -8,13 +8,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.Particle;
+import model.Point;
 
-public class OutputXYZFilesGenerator {
+public class OutputXYZFilesGeneratorCentered {
 
 	private int frameNumber;
 	private String path;
 
-	public OutputXYZFilesGenerator(String directory, String file) {
+	public OutputXYZFilesGeneratorCentered(String directory, String file) {
 		frameNumber = 0;
 		this.path = directory + file;
 		try {
@@ -23,25 +24,24 @@ public class OutputXYZFilesGenerator {
 			e.printStackTrace();
 		}
 	}
+	
+	private Point earthPosition;
 
 	public void printState(List<? extends Particle> particles) {
 		List<String> lines = new LinkedList<String>();
-		lines.add(String.valueOf(particles.size()));
+		lines.add(String.valueOf(2));
 		lines.add("ParticleId xCoordinate yCoordinate xDisplacement yDisplacement Radius R G B Transparency Selection");
+		earthPosition = particles.get(1).getPosition();
 		for (Particle p : particles) {
-			if (p.getId() == 1) {
-				lines.add(getInfo(p, "1 0 0", 0, 0));
-			} else {
-				lines.add(getInfo(p, "0 0 1", 0, 0));
+			if (p.getId() == 2 || p.getId() == 4) {
+				lines.add(getInfoDiff(p, "0 0 1", 0, 0));
 			}
 		}
 		writeFile(lines);
 	}
 
-
-	//TODO: add z
-	private String getInfo(Particle p, String color, double transparency, int selection) {
-		return p.getId() + " " + String.format("%f", p.getX()) + " " + String.format("%f", p.getY()) + " " + String.format("%f", p.getXVelocity()) + " " + String.format("%f", p.getYVelocity()) + " "
+	private String getInfoDiff(Particle p, String color, double transparency, int selection) {
+		return p.getId() + " " + String.format("%f", p.getX()-earthPosition.x) + " " + String.format("%f", p.getY()-earthPosition.y) + " " + String.format("%f", p.getXVelocity()) + " " + String.format("%f", p.getYVelocity()) + " "
 				+ String.format("%f", p.getRadius()) + " " + color + " " + transparency + " " + selection;
 	}
 

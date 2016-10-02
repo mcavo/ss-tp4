@@ -19,7 +19,7 @@ public class VerletPlanetRunner {
 
 	public static Statistics stats;
 
-	private final double maxTime = 3600.0*24*3000;
+	private final double maxTime = 3600.0*24*900;
 
 	private double time;
 
@@ -40,10 +40,10 @@ public class VerletPlanetRunner {
 		double min = Double.MAX_VALUE;
 		double minz = Double.MAX_VALUE;
 		while (time < maxTime) {
-			if(time >= 0 && !spaceshipCreated){
+			if(time >= 50276700 && !spaceshipCreated){
 				System.out.println("time releasing spaceship: "+String.format("%.0f",time));
-				//v.addSpaceShipTangencial();
-				v.addCustumSpaceShip();
+				v.addSpaceShipTangencial();
+				//v.addCustomSpaceShip();
 				spaceshipCreated=true;
 			}
 			if(i++%dtToPrint==0){

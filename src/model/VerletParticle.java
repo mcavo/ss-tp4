@@ -39,4 +39,6 @@ public abstract class VerletParticle extends Particle {
 		double z = position.z+(-dt)*velocity.z+(dt*dt)*force.z/(2*getMass());
 		oldPosition = new Point(x, y, z);
 	}
+
+	
 }

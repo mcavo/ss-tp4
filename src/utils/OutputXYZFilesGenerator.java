@@ -30,7 +30,7 @@ public class OutputXYZFilesGenerator {
 		lines.add("ParticleId xCoordinate yCoordinate xDisplacement yDisplacement Radius R G B Transparency Selection");
 		for (Particle p : particles) {
 			if (p.getId() == 1) {
-				lines.add(getInfo(p, "1 0 0", 0.5, 1));
+				lines.add(getInfo(p, "0.1 0.1 0.1", 0, 0));
 			} else {
 				lines.add(getInfo(p, "0 0 1", 0, 0));
 			}

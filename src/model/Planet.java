@@ -20,7 +20,7 @@ public class Planet extends VerletParticle{
 
 	@Override
 	public Point getOwnForce() {
-		return new Point(5,0);
+		return new Point(0,0);
 	}
 	
 }

@@ -100,4 +100,12 @@ public class Particle {
 	public double getSpeed() {
 		return velocity.abs();
 	}
+	
+	public void addMass(double mass) {
+		this.mass+=mass;
+	}
+	
+	public void addRadius(double radius) {
+		this.radius+=radius;
+	}
 }

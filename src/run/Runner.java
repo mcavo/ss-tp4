@@ -7,6 +7,7 @@ public class Runner {
 		//new VerletRunner();
  		//new BeemanRunner(true);
  		//new GearPredictorRunner();
-		new VerletPlanetRunner();
+		//new VerletPlanetRunner();
+		new VerletBlackHoleRunner();
 	}
 }

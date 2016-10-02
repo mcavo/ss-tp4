@@ -3,7 +3,6 @@ package model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.LocatorEx.Snapshot;
 
 public class Verlet {
 
@@ -69,13 +68,14 @@ public class Verlet {
 	public void addSpaceShipTangencial() {
 		Particle sun = particles.get(0);
 		Particle earth = particles.get(1);
+		double v0 = 3000;
 		Point linealDireccion = Point.sub(earth.position, sun.position);
 		linealDireccion.normalize();
 		linealDireccion.applyFunction(x->(1500000+earth.getRadius())*x);
 		Point position = Point.sum(earth.position, linealDireccion);
 		linealDireccion = earth.velocity.clone();
 		linealDireccion.normalize();
-		linealDireccion.applyFunction(x->(10120)*x);
+		linealDireccion.applyFunction(x->(7120+v0)*x);
 		Point velocity = Point.sum(earth.velocity, linealDireccion);
 		VerletParticle spaceship = new Planet(4, position.x, position.y, position.z, velocity.x, velocity.y, velocity.z, 2E5, 0);
 		Point force = new Point(0,0);
@@ -86,7 +86,7 @@ public class Verlet {
 		particles.add(spaceship);
 	}
 
-	public void addCustumSpaceShip() {
+	public void addCustomSpaceShip() {
 		Particle sun = particles.get(0);
 		Particle earth = particles.get(1);
 		Point linealDireccion = Point.sub(earth.position, sun.position);

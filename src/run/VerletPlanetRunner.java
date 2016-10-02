@@ -7,7 +7,7 @@ import model.Planet;
 import model.Point;
 import model.Verlet;
 import model.VerletParticle;
-import utils.OutputXYZFilesGeneratorCentered;
+import utils.OutputXYZFilesGenerator;
 
 public class VerletPlanetRunner {
 
@@ -15,14 +15,12 @@ public class VerletPlanetRunner {
 		this.run();
 	}
 
-	public static Statistics stats;
-
 	private final double maxTime = 3600.0*24*900;
 
 	private double time;
 
 	public void run() {
-		OutputXYZFilesGeneratorCentered outputXYZFilesGenerator = new OutputXYZFilesGeneratorCentered(
+		OutputXYZFilesGenerator outputXYZFilesGenerator = new OutputXYZFilesGenerator(
 				"animation/", "planets");
 
 		double dt = 300.0;
@@ -37,11 +35,6 @@ public class VerletPlanetRunner {
 		particles.add(earth);
 		particles.add(mars);
 		
-		double dist = 384400000;
-		Point position = new Point(earth.getX()+dist, earth.getY());
-		Point velocity = Point.sum(new Point(0.0, 1023.05), earth.getVelocity());
-		VerletParticle moon = new Planet(4, position.x, position.y, 0, velocity.x, velocity.y,0, 7.349e22, 3474000);
-		particles.add(moon);
 		Verlet v = new Verlet(particles, dt);
 		time = 0;
 		int i = 0;

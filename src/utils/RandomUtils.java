@@ -25,4 +25,12 @@ public class RandomUtils {
 		}
 		return random.nextInt(max-min+1)+min;
 	}
+	
+	public static double getSign(){
+		if(random.nextBoolean()){
+			return 1;
+		}else{
+			return -1;
+		}
+	}
 }
